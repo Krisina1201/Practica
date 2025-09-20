@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Demochka.ProfileWindow"
+		x:CompileBindings="False"
+		WindowStartupLocation="CenterScreen"
+		Height="400"
+		Width="300"
+        Title="Пикми заход">
+	<DockPanel DockPanel.Dock="Top">
+		<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<StackPanel Orientation="Horizontal" >
+				<Button Content="Авторизация" Click="AuthClick" Background="LightGray" Foreground="Peru" FontWeight="Bold"/>
+				<Button Content="Регистрация" Background="LightGray" Click="RegClick" Foreground="Peru" FontWeight="Bold"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Vertical" x:Name="RegistrationPanel">
+				<TextBox x:Name="EmailTextR" Watermark="Введите почту" Margin="5"/>
+				<TextBox x:Name="PasswordTextR" Watermark="Введите пароль" Margin="5"/>
+				<TextBox x:Name="FioTextR" Watermark="Введите фио" Margin="5"/>
+				<Button Content="Вход" FontWeight="Light" HorizontalContentAlignment="Center" Click="RegClickDB" Margin="5" HorizontalAlignment="Stretch" Background="Pink"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Vertical" x:Name="AuthPanel">
+				<TextBox x:Name="EmailTextA" Watermark="Введите почту" Margin="5"/>
+				<TextBox x:Name="PasswordTextA" Watermark="Введите пароль" Margin="5"/>
+				<Button Content="Вход" FontWeight="Light" HorizontalContentAlignment="Center" Margin="5" Click="AuthClickDB" HorizontalAlignment="Stretch" Background="Pink"/>
+			</StackPanel>
+		</StackPanel>
+		
+
+	</DockPanel>
+</Window>

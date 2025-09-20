@@ -1,0 +1,104 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Demochka.AddTickerWindow"
+		WindowStartupLocation="CenterScreen"
+		x:CompileBindings="False"
+        Title="Купить пикми билет">
+	<DockPanel DockPanel.Dock="Top">
+		<Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*,*,*,*, *">
+
+			<StackPanel Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0">
+				<TextBlock Text="Купить пикми билет" FontSize="25" 
+						 FontWeight="Bold" Foreground="PaleVioletRed" 
+						 HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30"/>
+			</StackPanel>
+			
+			<Button Grid.Column="0" Grid.Row="0" Content="Назад" Background="Pink" Click="Button_Click_1"
+					HorizontalAlignment="Center"/>
+
+			<Border  CornerRadius="15" Background="Pink" BorderThickness="1"
+					Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Gray">
+				<Grid ColumnDefinitions="*,Auto,*,*,*,*," RowDefinitions="*,*,*">
+					<TextBlock x:Name="countPaccager" Text="" VerticalAlignment="Center"
+							   Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="4" />
+					<TextBlock x:Name="costTextBlock" Text="" VerticalAlignment="Center"
+							   Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4"/>
+					<CheckBox x:Name="checkBagage" Content="Нужен багаж" 
+							  Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4"/>
+					<Image Source="/image/face.png" Grid.Column="0" Grid.Row="0" Width="40"/>
+					<StackPanel Orientation="Vertical" VerticalAlignment="Center"
+								Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3">
+						<TextBlock Text="" x:Name="airlaneTextBlock" FontWeight="Bold" FontSize="15" />
+						<TextBlock Text="" x:Name="timeInFlightBlock" FontWeight="Light" FontSize="12"/>
+					</StackPanel>
+
+					<StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
+						<TextBlock x:Name="timeFromTextBlock" Text="" HorizontalAlignment="Center" FontWeight="Bold"/>
+						<TextBlock Text="" x:Name="dateFromTextBlock" FontWeight="Light"/>
+					</StackPanel>
+					
+					<StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">
+						<TextBlock x:Name="timeToBlock" Text="" HorizontalAlignment="Center" FontWeight="Bold"/>
+						<TextBlock Text="" x:Name="dateToTextBlock" FontWeight="Light"/>
+					</StackPanel>
+
+					<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+						<TextBlock Text="" x:Name="sityFromTextBlock" FontWeight="Bold"/>
+						<TextBlock Text="" x:Name="airoportFromTextBlock" FontWeight="Bold"/>
+					</StackPanel>
+
+					<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+						<TextBlock Text="" x:Name="sityToTextBlock" FontWeight="Bold"/>
+						<TextBlock Text="" x:Name="airoportToTextBlock" FontWeight="Bold"/>
+					</StackPanel>
+					
+				</Grid>
+			</Border>
+			<StackPanel Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="4">
+				<TextBlock Text="Введите свои данные" Foreground="PaleVioletRed" FontWeight="Bold" HorizontalAlignment="Center" FontSize="18" Margin="5"/>
+				<TextBox x:Name="PassportDataBox" Watermark="Введите ФИО" Background="#ebccdf" Margin="5"/>
+				<TextBox x:Name="FIOTextBox" Background="#ebccdf" Watermark="Введите номер и серию пасопрта" Margin="5"/>
+				<TextBox x:Name="EmailTextBox" Background="#ebccdf" Watermark="Введите почту" Margin="5"/>
+				<TextBox x:Name="PhoneTextBox" Background="#ebccdf" Watermark="Введите номер телефона" Margin="5"/>
+				<StackPanel Orientation="Horizontal" >
+					<Button Content="Добавить пассажира" Background="Pink" FontSize="12.5" Click="AddPassagerClick" Margin="5" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+					<Button Content="Оформить все билеты" Background="Pink" FontSize="12.5" Click="ByeTicket" Margin="5" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+				</StackPanel>
+				
+			</StackPanel>
+
+			<Border CornerRadius="15" BorderThickness="1" Grid.Column="3" Grid.Row="1"
+						 Margin="5" BorderBrush="Gray" Background="#f08ac8">
+				<StackPanel>
+					<TextBlock Text="Список пассажиров" HorizontalAlignment="Center" Foreground="White" Margin="5" FontWeight="Bold"/>
+
+					<ScrollViewer MaxHeight="300" VerticalScrollBarVisibility="Auto">
+						<ListBox x:Name="PassagersListBox">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Border CornerRadius="15" BorderThickness="1" Background="#ff6694">
+										<Grid ColumnDefinitions="Auto,*" RowDefinitions="*,*,*,*,*">
+											<TextBlock Text="{Binding FullName}" x:Name="fioTextBlock" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+											<TextBlock Text="{Binding PassportNumber}" x:Name="PassportTextBlock" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+											<TextBlock Text="{Binding Email}" x:Name="emailTextBlock" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+											<TextBlock Text="{Binding PhoneNumber}" x:Name="phoneNumberTextBlock" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+											<TextBlock Text="{Binding LuggageInfo}" x:Name="costBagaeTextBlock" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
+											<Button Content="Удалить" Click="DeleteClick" Grid.Column="1" Grid.Row="1" Background="#fa7f6b" Tag="{Binding}"/>
+										</Grid>
+									</Border>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+					</ScrollViewer>
+									
+					
+				</StackPanel>
+			</Border>
+			
+			
+		</Grid>
+	</DockPanel>
+</Window>

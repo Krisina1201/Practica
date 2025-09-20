@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Demochka.UserWindow"
+		Height="400"
+		Width="400"
+		WindowStartupLocation="CenterScreen"
+        Title="Пикми аккаунт">
+	<DockPanel DockPanel.Dock="Top" >
+		<Grid ColumnDefinitions="*,*,*,*,*,*,*,*" RowDefinitions="*,*,*,*,*,*,*,*"  ShowGridLines="True">
+			<StackPanel Grid.Row="3" Grid.Column="0" Background="Black"/>
+			<StackPanel Grid.Row="3" Grid.Column="7" Background="Black"/>
+			<StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="6" Background="#e2c8c8"/>
+			<StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Background="#e2c8c8"/>
+			<StackPanel Grid.Row="5" Grid.Column="1" Background="#ac5c5d"/>
+			<StackPanel Grid.Row="5" Grid.Column="6" Background="#ac5c5d"/>
+			<StackPanel Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="4" Background="#bf8585"/>
+			<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="3" Background="Pink"/>
+			<StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="4" Background="Pink"/>
+			<StackPanel Grid.Column="0" Grid.Row="4" Grid.RowSpan="7" Background="Pink"/>
+			<StackPanel Grid.Column="7" Grid.Row="4" Grid.RowSpan="7" Background="Pink"/>
+			<StackPanel Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="6" Background="Pink"/>
+
+			<StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="6">
+				<TextBlock Text="Профиль" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
+				<TextBox Margin="5" x:Name="fioBox"/>
+				<TextBox Margin="5" x:Name="emailBox"/>
+				<TextBox Margin="5" x:Name="phoneBox"/>
+				<TextBox Margin="5" x:Name="passportDataBox"/>
+				<TextBox Margin="5" x:Name="passwordBox"/>
+				<Button Content="Изменить профиль" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="5" Click="UpdateClick"/>
+				<Button Content="Мои билеты" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="5" Click="TicketClick"/>
+			</StackPanel>
+		</Grid>
+
+	</DockPanel>
+</Window>

@@ -1,0 +1,160 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Demochka.MainWindow"
+        xmlns:local="clr-namespace:Demochka"
+        x:CompileBindings="False"
+		WindowStartupLocation="CenterScreen"
+        Title="Просмотр пикми билетов">
+
+	<DockPanel LastChildFill="True">
+		<StackPanel DockPanel.Dock="Top" Background="#1187e8" Height="150">
+
+			<Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+				<StackPanel Orientation="Horizontal" Margin="12,15"  HorizontalAlignment="Center" Grid.Column="1">
+					<Button Click="ProfileClick" Background="#1187e8">
+						<Image Source="image\vanya.png"  Height="35" Margin="0,0,10,0"/>
+					</Button>
+					
+					<TextBlock Text="PickmeVanya" FontWeight="DemiBold" FontSize="16"
+							  VerticalAlignment="Center" Foreground="White"/>
+
+				</StackPanel>
+
+
+			</Grid>
+
+			<Grid Margin="10,0,10,10" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+
+				<ComboBox x:Name="FromBox" Width="150" PlaceholderText="Откуда"
+                         Margin="5,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+
+				<Button Height="30" Width="30" Margin="5,0" Grid.Column="1" Grid.Row="0"
+                       VerticalAlignment="Center" Click="SwapCountry">
+					<Image Source="/image/swap.png" Stretch="Uniform"/>
+				</Button>
+
+				<ComboBox x:Name="ToBox" Width="150" PlaceholderText="Куда"
+                         Margin="5,0" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"/>
+
+				<TextBox x:Name="ToDateBox" Width="150" Height="30" Watermark="Дата полета"
+                        Margin="5,0" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center"/>
+
+
+				<ComboBox x:Name="PassagersComboboox" Width="150"
+                         PlaceholderText="Количество пассажиров"
+                         Margin="5,0" Grid.Column="4" Grid.Row="0" VerticalAlignment="Center"/>
+
+				<Button Background="#f4742a" Height="40" Content="Найти билеты"
+                       Width="150" Margin="10,0" Grid.Column="5" Grid.Row="0"
+                       Click="ClickFindTicket"
+                       Foreground="White" FontSize="16"
+                       HorizontalContentAlignment="Center" 
+						VerticalContentAlignment="Center"
+						FontWeight="SemiLight"
+                       VerticalAlignment="Center"/>
+
+			</Grid>
+		</StackPanel>
+
+		<StackPanel>
+			<StackPanel HorizontalAlignment="Center" x:Name="InitialContentPanel"
+                       VerticalAlignment="Center">
+				<TextBlock Text="" x:Name="checkContentBlock" FontSize="16" FontWeight="Heavy"/>
+				<Image Source="image\pickme.png" Stretch="Uniform" Height="150"/>
+			</StackPanel>
+
+			<ScrollViewer VerticalScrollBarVisibility="Auto">
+				<ListBox x:Name="ListBoxTicket" IsVisible="False"  DoubleTapped="OnListBoxDoubleTapped">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border Background="White" CornerRadius="5" Margin="10,5" Padding="15">
+								<StackPanel Spacing="8">
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="Auto"/>
+											<ColumnDefinition Width="*"/>
+										</Grid.ColumnDefinitions>
+
+										<StackPanel Grid.Column="0">
+											<TextBlock Text="{Binding FromCity}" FontWeight="Bold" FontSize="18"/>
+											<TextBlock Text="{Binding FromAiroport}" FontSize="12" Foreground="Gray"/>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Text="{Binding DateFromFly}" FontSize="12" Foreground="Gray"/>
+												<TextBlock Text=" "/>
+												<TextBlock Text="{Binding DepartureTime}" FontSize="12" Foreground="Gray"/>
+											</StackPanel>
+											
+										</StackPanel>
+
+										<TextBlock Text="→" Grid.Column="1" FontSize="16"
+                                                  VerticalAlignment="Center" Margin="10,0"/>
+
+										<StackPanel Grid.Column="2">
+											<TextBlock Text="{Binding ToCity}" FontWeight="Bold" FontSize="18"/>
+											<TextBlock Text="{Binding ToAiroport}" FontSize="12" Foreground="Gray"/>
+											<StackPanel Orientation="Horizontal">
+												
+												<TextBlock Text="{Binding DateToFly}" FontSize="12" Foreground="Gray"/>
+												<TextBlock Text=" "/>
+												<TextBlock Text="{Binding ArrivalTime}" FontSize="12" Foreground="Gray"/>
+											</StackPanel>
+											
+										</StackPanel>
+									</Grid>
+
+									<Separator/>
+
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+										</Grid.ColumnDefinitions>
+
+										<StackPanel Grid.Column="0">
+											<TextBlock Text="Время в пути" FontSize="12" Foreground="Gray"/>
+											<TextBlock Text="{Binding TimeInFly}" FontWeight="SemiBold"/>
+										</StackPanel>
+
+										<!--<StackPanel Grid.Column="1">
+											<TextBlock Text="Дата" FontSize="12" Foreground="Gray"/>
+											<TextBlock Text="{Binding DateFly}" FontWeight="SemiBold"/>
+										</StackPanel>-->
+									</Grid>
+
+									<Separator/>
+
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="Auto"/>
+										</Grid.ColumnDefinitions>
+
+										<TextBlock Text="Цена" FontSize="12" Foreground="Gray"/>
+										<TextBlock Grid.Column="1" Text="{Binding Cost}"
+                                                  FontSize="20" FontWeight="Bold" Foreground="#f4742a"/>
+									</Grid>
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</ScrollViewer>
+		</StackPanel>
+	</DockPanel>
+</Window>
