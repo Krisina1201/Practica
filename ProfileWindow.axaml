@@ -12,8 +12,8 @@
 	<DockPanel DockPanel.Dock="Top">
 		<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
 			<StackPanel Orientation="Horizontal" >
-				<Button Content="Авторизация" Click="AuthClick" Background="LightGray" Foreground="Peru" FontWeight="Bold"/>
-				<Button Content="Регистрация" Background="LightGray" Click="RegClick" Foreground="Peru" FontWeight="Bold"/>
+				<Button Content="Авторизация" Click="AuthClick" Background="LightGray" Foreground="Peru" FontWeight="Bold" x:Name="authButton"/>
+				<Button Content="Регистрация" Background="LightGray" Click="RegClick" Foreground="Peru" FontWeight="Bold" x:Name="regButton"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Vertical" x:Name="RegistrationPanel">

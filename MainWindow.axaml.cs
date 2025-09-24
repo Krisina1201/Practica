@@ -250,8 +250,18 @@ public partial class MainWindow : Window
 
     private void ProfileClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        ProfileWindow profileWindow = new ProfileWindow();
-        profileWindow.Show();
-        this.Close();
+
+        if (AuthService.IsAuthenticated)
+        {
+            UserWindow userWindow = new UserWindow();
+            userWindow.Show();
+            this.Close();
+        } else
+        {
+            ProfileWindow profileWindow = new ProfileWindow();
+            profileWindow.Show();
+            this.Close();
+        }
+        
     }
 }

@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Demochka.Modelss;
 using System;
 using System.Linq;
@@ -16,14 +17,20 @@ public partial class ProfileWindow : Window
         RegistrationPanel.IsVisible = false;
 
         context = new BagotskayaContext();
+        authButton.Background = new SolidColorBrush(Colors.Pink);
+        regButton.Background = new SolidColorBrush(Colors.White);
     }
 
     public BagotskayaContext context;
 
+  
     private void AuthClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         AuthPanel.IsVisible = true;
         RegistrationPanel.IsVisible = false;
+
+        authButton.Background = new SolidColorBrush(Colors.Pink);
+        regButton.Background = new SolidColorBrush(Colors.White);
     }
 
     private void RegClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -31,6 +38,8 @@ public partial class ProfileWindow : Window
         AuthPanel.IsVisible = false;
         RegistrationPanel.IsVisible = true;
 
+        authButton.Background = new SolidColorBrush(Colors.White);
+        regButton.Background = new SolidColorBrush(Colors.Pink);
     }
 
     private void AuthClickDB(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -50,7 +59,8 @@ public partial class ProfileWindow : Window
                 ShowErrorDialog("Ошибка", "Пользователь с такими данными не найден");
             } else
             {
-                UserWindow userWindow = new UserWindow(checkUser);
+                AuthService.Login(checkUser.UserId);
+                UserWindow userWindow = new UserWindow();
                 userWindow.Show();
                 this.Close();
             }
@@ -85,7 +95,9 @@ public partial class ProfileWindow : Window
 
                 context.SaveChanges();
 
-                UserWindow userWindow = new UserWindow(user);
+                AuthService.Login(user.UserId);
+
+                UserWindow userWindow = new UserWindow();
                 userWindow.Show();
                 this.Close();
             } catch (Exception eq)
